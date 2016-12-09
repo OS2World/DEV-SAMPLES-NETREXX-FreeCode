@@ -1,0 +1,6 @@
+-- This interface defines the methods required for a sink of data from
+-- a pipe.  The methods are used when connecting a source to the sink.
+-- A PipeSink is also Runnable.
+class PipeSink implements Runnable interface public
+    method getPipedInputStream() returns PipedInputStream
+    method connectInputTo(source=PipeSource) Signals IOException

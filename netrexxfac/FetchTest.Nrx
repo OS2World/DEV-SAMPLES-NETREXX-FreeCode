@@ -1,0 +1,12 @@
+-- Test for Fetch class' fetchURL static method
+
+class FetchTest extends Frame public
+    i= String
+    method paint(g=Graphics) public
+      g.drawString(i, 25, 50);
+
+    method main(args=String[]) public static
+       f = FetchTest()
+       f.i = Fetch.fetchURL(args[0]).substring(1, 5)
+       f.resize(300, 300);
+       f.show();

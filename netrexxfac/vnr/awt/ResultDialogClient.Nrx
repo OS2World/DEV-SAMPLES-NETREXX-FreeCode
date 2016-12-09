@@ -1,0 +1,11 @@
+OPTIONS BINARY NOCROSSREF NOTRACE
+PACKAGE vnr.awt
+
+-- An interface for users of dialogs that return a result to implement.
+class ResultDialogClient public interface
+
+-- this method is what the result dialog calls to tell the parent that everything is done
+method dialogResult(d=Dialog,o=Object) public
+
+-- this method returns the frame the dialog should be modal to
+method getFrame returns Frame public

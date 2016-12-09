@@ -1,0 +1,2 @@
+-- A filter in a pipe behaves like both a source of data and a sink of data.
+class PipeFilter implements PipeSource, PipeSink interface

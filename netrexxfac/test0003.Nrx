@@ -1,0 +1,19 @@
+-- test for BorderPanel
+-- dIon
+OPTIONS BINARY NOCROSSREF NOTRACE
+
+import vnr.awt.
+
+class test0003 extends Applet
+   p1=BorderPanel()
+method init
+   setLayout(Borderlayout())
+--   if p1.getForeground <> null then say p1.getForeground; else say "null"
+--   if p1.getBackground <> null then say p1.getBackground; else say "null"
+   p1.add(Button("Junk"))
+   add("Center", p1)
+
+method action(e=Event, o=Object) returns boolean
+   p1.setRaised(0)
+   return 1
+

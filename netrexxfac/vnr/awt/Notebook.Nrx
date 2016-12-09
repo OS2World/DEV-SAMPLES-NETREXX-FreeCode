@@ -1,0 +1,268 @@
+package vnr.awt
+
+-- notebook class
+-- implements an OS/2 style notebook, known under windows as a tabbed dialog.
+--
+-- this implementation simply has one row of non scrollable 'tabs'
+-- it will draw:
+--
+--   Tab1  Tab2  Tab3  Tab4  Tab5
+-- |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|                   outer line is raised, inner sunken
+-- | |~~~~~~~~~~~~~~~~~~~~~~~~~~| |                   tab text has a polygon around it
+-- | |                          | |                   'selected' tab is drawn in bold
+-- | |                          | |                   need 'addTab(text, component)' method.
+-- | |                          | |                   use CardLayout to layout the panel
+-- | |                          | |                   draw stuff in the insets
+-- | L__________________________> |
+-- L______________________________>
+--
+-- now some definitions
+-- 'tabs' are text associated with a component to be shown
+-- insets should be:
+--    left: 3 * borderwidth + 1 pixel for hgap
+--    right: 3 * borderwidth  + 1 pixel for hgap
+--    top:   Tab Height + 3 * borderwidth + 1 pixel for vgap
+--    bottom: 3 * borderwidth + 1 pixel for vgap
+-- hard part here is:
+--    a) Drawing tab text to show emphasis on page selected
+--    b) Handling tab text click detection
+-- might also need a drawTab and drawSelectedTab methods
+-- need to track which tab is currently selected...select 'first' added tab by default
+
+-- ok, tab drawing:
+-- text (in bold) + 1 average char either side + 1 pixel underneath.
+
+-- a 'tab' has text, polygon
+-- draw tabs starting from 2 * borderWidth, (tabHeight above) + vgap
+
+-- should be able to do click detection using Polygon class
+
+class Notebook extends Panel implements java.awt.LayoutManager
+
+properties Inheritable
+   borderWidth = 2
+   hgap = 1
+   vgap = 1
+   selectedTab = int 0
+   largestFont = Font
+   largestFontMetrics = FontMetrics
+   tabList = Vector()
+   componentList = Vector()
+   tabComponentHash = Hashtable()
+   hitList = Vector()
+--   layout = CardLayout()
+   ownInsets = Insets()
+   
+
+-- default constructor
+method Notebook public                                   
+   super()
+   this.setLayout(this)
+   f = this.getFont
+   this.updateFontCalcs(f)
+   this.updateInsets(f)
+
+--
+-- work out how much space to leave for drawing the tabs using the font
+method updateInsets(f=Font)
+   if f <> null then do
+      this.ownInsets.top = this.tabHeight(f) + (3 * borderWidth) + vgap
+      this.ownInsets.bottom = (3 * borderWidth) + vgap
+      this.ownInsets.left = (3 * borderWidth) + hgap
+      this.ownInsets.right = (3 * borderWidth) + hgap
+   end
+
+method updateFontCalcs(f=Font)
+   if f <> null then do
+      name = f.getName
+      size = f.getSize
+      style = Font.BOLD
+      this.largestFont = Font(name, style, size+2)
+      -- +2 is used, as the selected tab is drawn bold, in a two point bigger font
+      this.largestFontMetrics = Toolkit.getDefaultToolkit.getFontMetrics(Font(name, style, size+2))
+   end
+
+
+-- 
+-- called when the component has a peer
+method addNotify public
+   super.addNotify                
+   f = this.getFont
+   if f<> null then do
+      this.updateFontCalcs(f)
+      this.updateInsets(f)
+   end
+   
+
+-- work out the height of a tab in a given font
+method tabHeight(f=Font) returns int
+   if f = null then return 0
+   return largestFontMetrics.getHeight + largestFontmetrics.getDescent + 6
+
+-- work out the width of a tab in a given font
+method tabWidth(f=Font, text=String) returns int
+   if f = null then return 0
+   -- width of text + 1 char spacing either side
+   return largestFontMetrics.stringWidth(text) + 2 * largestFontMetrics.getMaxAdvance
+
+-- paint the notebook - call parent's paint method and then draw according to comments up top
+method paint(g=Graphics)
+
+--   super.paint(g)
+   f = g.getFont
+   -- update insets in case of font change
+   this.updateFontCalcs(f)
+   this.updateInsets(f)
+
+   -- draw raised rectangle for the border
+   g.setColor(this.getbackground)
+   s = this.size
+   th = this.tabHeight(f)
+   DrawUtils.draw3DRectangle(g, 0, th, s.width, s.height - th, borderWidth, 1)
+
+   -- draw sunken one
+   nextPlace = 2*borderWidth
+   DrawUtils.draw3DRectangle(g, nextPlace, th + nextPlace, s.width - 2 * nextPlace, s.height - th - 2 * nextPlace, borderWidth, 0)
+
+   -- set colour back to fg
+   g.setColor(this.getForeground)
+
+   -- update hit list for tab polgons
+   hitList.removeAllElements
+
+   -- now draw tabs :) 
+   startx = borderWidth
+   startY = th
+   loop i = 0 to tabList.size -1
+      -- draw each tab, draw the selected tab in a bold font starting at borderwidth, this.insets.top - vgap
+      tabText = String tabList.elementAt(i)
+      if i = selectedTab then do
+         g.setFont(this.largestFont)
+         p = this.drawTab(g, tabText, startX, startY)
+         g.setFont(f)
+      end
+      else
+         p = this.drawTab(g, tabText, startX, startY)
+
+      -- add new tab polygon to hit detection list
+      hitList.addElement(p)
+
+      startX = startX + this.tabWidth(f, tabText)
+   end
+
+   -- now resize and redraw selected component
+   c = Component componentList.elementAt(selectedTab)
+   compX = this.ownInsets.left + 1
+   compY = this.ownInsets.top + 1
+   compW = s.width - this.ownInsets.left - this.ownInsets.right - 2
+   compH = s.height - this.ownInsets.top - this.ownInsets.bottom - 2
+   c.reshape(compX, compY, compW, compH)
+   c.show
+   c.validate
+
+method add(c=Component) returns Component
+   super.add(c)
+   componentlist.addElement(c)
+   return c
+
+-- add a new tab to the notebook
+method addTab(text=String, show=Component)
+   this.updateInsets(this.getFont)
+   tabList.addElement(text)
+   this.add(show)
+   if this.isShowing then do
+      this.repaint
+   end
+
+method showTab(text=String) public
+   -- change this from using layout to doing my own work...
+   -- hide selected component....show the one that matches the tab
+   (Component componentList.elementAt(selectedTab)).hide
+
+   newTabFound = 0
+   loop i = 0 to tabList.size - 1 while \newTabFound
+      if text = String Tablist.elementAt(i) then newTabFound = 1
+   end
+
+   if newTabFound then do
+      -- show component corresponding to tab
+      selectedTab = i - 1
+   end
+   this.repaint
+
+-- show a tab by number (zero based)
+method showTab(tabNum=int) public
+   if tabNum=selectedTab then return
+
+   (Component componentList.elementAt(selectedTab)).hide
+
+   selectedTab = tabNum
+   this.repaint
+
+
+--
+-- draw a tab
+method drawTab(g=Graphics, text=String, x=int, y=int) returns Polygon
+   -- work out stuff for shape of a tab
+   desc = largestFontMetrics.getDescent
+   h = largestFontMetrics.getHeight
+   w = largestFontMetrics.stringWidth(text)
+
+   -- create the shape of the tab
+   p = Polygon()
+   leadSpace = largestFontMetrics.getMaxAdvance
+   p.addPoint(x, y); p.addPoint(x+leadSpace, y - desc - h - 2); p.addPoint(x + w + leadSpace, y - desc - h - 2)
+   p.addPoint(x + w + 2 * leadSpace, y); p.addPoint(x, y)
+
+   -- Now fill shape
+   c = g.getColor
+   g.setColor(Color.yellow)
+   g.fillPolygon(p)
+   g.setColor(c.darker)
+   g.drawPolygon(p)
+   g.setColor(c)
+
+   -- now draw Text
+   y = y - 1 - desc
+   g.drawString(text, x+leadSpace, y)
+
+   return p
+
+method mouseUp(e=Event, x=int, y=int) public returns boolean
+
+   if x > borderwidth & y <= this.tabHeight(this.getFont) then do -- clicked somewhere in tab area
+      -- check to see which tab is hit
+      -- show associated card
+      tabFound = 0
+      loop i = 0 to hitList.size -1 while \tabFound
+         -- hit list is same order as tablist!
+         if (Polygon hitList.elementAt(i)).inside(x, y) then do
+            tabFound = 1
+         end
+      end
+
+      if tabFound then do
+         this.showTab(int i-1)
+      end
+
+      return 1
+   end
+   else return 0  -- we didn't handle it
+
+--Layout Manager methods
+method addLayoutComponent(t=String, c=Component) public
+   this.addTab(t, c)
+
+method removeLayoutComponent(c=Component) public
+   nop
+
+method preferredLayoutSize(c=Container) public returns Dimension
+   w = this.ownInsets.left + this.ownInsets.right + (Component componentList.elementAt(selectedTab)).size.width + 2
+   h = this.ownInsets.top + this.ownInsets.bottom + (Component componentList.elementAt(selectedTab)).size.height + 2
+   return Dimension(w, h)
+
+method minimumLayoutSize(c=Container) public returns Dimension
+   return this.preferredLayoutSize(c)
+
+method layoutContainer(c=Container) public
+   c.repaint

@@ -1,0 +1,320 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>NetRexx - Freely Available Code</TITLE>
+</HEAD>
+<BODY bgcolor="#FFFFFF">
+<H1><img src="http://www.multitask.com.au/netrexx.gif" align=middle alt="NetRexx - "> NetRexx Sample Code</H1>
+<center>
+<img src="http://www.multitask.com.au/colorlin.gif">
+</center><br>
+<p>This page is a collection of applets and classes written in NetRexx, complete with source code, for you
+to use freely. It is intended as a source of information on relating NetRexx to Java, as some of the samples
+here are ported from the book <strong>Java in a Nutshell</strong> by O'Reilly and Associates. I recommend
+the book strongly if you're looking to understand Java.
+<br>You can <a href="netrexxfac.zip">download</a> the entire FAC source here.
+<br>You are visitor <img src=http://www.multitask.com.au/multitask/cgi-bin/count/countm.pl?file=/netrexx/fac/index.html&inc=y&outtype=b&style=a&minlen=7 align=absmiddle>
+ since November 18,1996
+<p>Using the samples provided here, you can take the Java source and samples provided in JIAN, and learn
+how to write NetRexx code that uses Java classes. Some of the sample code provided can be run as an Applet
+within a Java-enabled Browswer, others must be run standalone using <strong>java</strong>, <strong>javapm</strong>
+or a <b>Java Applet Reference</b> in OS/2 Warp v4.0. If you're using a Java-enabled browser, you should be
+able to use the applets below if you have NetRexx available. If your browser can't run Java applets, use
+either the applet viewer that came with the JDK or one of the methods above.
+<br>Users of <strong>OS/2 v4.0</strong> with Java support installed, using Netscape for OS/2,
+should be able to see the apps in the links provided. WebExplorer users of OS/2 v4.0 should try to drag the applet
+pages to their desktops.
+
+<ol>
+
+<p><li><strong>Notebook</strong> class from Visual NetRexx. A 'notebook' or 'tabbed dialog' class that lets you click on 'tabs' to
+show one of a number of mutually exculsive components.
+<br>Uses the <a href="vnr/awt/DrawUtils.Nrx">DrawUtils</a> class.
+<br><a href="test0004.html">The Applet</a>
+<br><a href="vnr/awt/Notebook.Nrx">The Code</a>
+
+<p><li><strong>BorderPanel</strong> class from Visual NetRexx. A panel that has a three dimensional border around
+it. The border can be raised or sunken, three-d or etched.
+<br>Uses the <a href="vnr/awt/DrawUtils.Nrx">DrawUtils</a> class.
+<br><a href="test0003.html">The Applet</a>
+<br><a href="vnr/awt/BorderPanel.Nrx">The Code</a>
+
+<p><li><strong>MessageBox</strong> class from Visual NetRexx.
+<br>Uses the <a href="vnr/awt/MultiLineLabel.Nrx">MultiLineLabel</a> class.
+<br><a href="vnr/awt/MessageBox.Nrx">The Code</a>
+
+<p><li><strong>JDKConvertDir</strong> class to convert a directory with Javadoc generated html into NetRexx syntax.
+<br>Run using <strong>java JDKConvertDir somedir</strong> output will go to the current directory. Uses
+the <a href="JDKDocConverter.Nrx">JDKDocConverter</a> class.
+<br><a href="JDKConvertDir.Nrx">The Code</a>
+
+<p><li><strong>JDKConvertFile</strong> class to convert a Javadoc generated file into NetRexx syntax.
+<br>Run using <strong>java JDKConvertFile somefile.html</strong> output will go to a file called temp.htm
+in the current directory. Uses the <a href="JDKDocConverter.Nrx">JDKDocConverter</a> class
+<br><a href="JDKConvertFile.Nrx">The Code</a>
+
+<p><li><strong>Toolbar</strong> from Visual NetRexx for Java
+<br>A toolbar class. Requires <a href="vnr/awt/NonSizingGridLayout.Nrx">NonSizingGridLayout.Nrx</a>.
+<br><a href="vnr/awt/Toolbar.Nrx">The Code</a>
+
+<p><li><strong>ImageButton</strong> from Visual NetRexx for Java
+<br>An image button class. Requires <a href="vnr/awt/GrayFilter.Nrx">GrayButton.Nrx</a> and
+<a href="vnr/awt/DrawUtils.Nrx">DrawUtils.Nrx</a> classes.
+<br><a href="testbtn1.html">The Applet</a>
+<br><a href="vnr/awt/ImageButton.Nrx">The Code</a>
+<br><a href="testbtn1.Nrx">Test Code</a>
+
+
+<p><li><strong>RxDate from <a href="mailto:Bob.Keller@siemenscom.com">Bob Keller</a> </strong>
+<br>This is a class for date manipulation.
+<br><a href="RXdate.Nrx">The Code</a>
+<br><a href="testDate.Nrx">Test Code</a>
+
+<p><li><strong>The ArcTest class from the JDK demos</strong>
+<br>This class shows you how to draw lines and arcs. See /?/demo/ArcTest in
+your JDK (the ? means where your JDK is installed, i.e. java or javaos2 etc)
+<br><a href="ArcTest.Nrx">The Code</a>
+
+<p><li><strong>The Animator class from the JDK demos</strong>
+<br>This class is an all purpose animator. It has a soundtrack and sounds to play in the background,
+can repeat the animation indefinitely and many other things. See /?/demo/Animator in
+your JDK (the ? means where your JDK is installed, i.e. java or javaos2 etc)
+<br><a href="demo/Animator.Nrx">The Code</a>
+
+<p><li><strong>Syntax Highlighting for OS/2's EPM (NOT NETREXX CODE)</strong>
+<br><a href="JavaWorkFrame.zip">NetRexx Syntax File</a>
+
+<p><li><strong>The Pipes class ported from 'Java in a Nutshell (Section 6)'</strong>
+<br>This class demonstrates using Filters to emulate 'piping' information between filters.
+<br>Run using java Pipes <pattern> <file>, e.g. java Pipes LANG c:\config.sys
+<br>Please note that the original java file was split into separate NetRexx files, as NetRexx
+only allows one public class per file. All these files are available here.
+<br>You will need NetRexx 0.86 or higher to compile the code. Many thanks to Mike Cowlishaw for
+fixing bugs in NetRexx and discussing/implementing suggestions.
+<br><a href="Pipes.Nrx">The Code</a>
+
+<p><li><strong>The LayoutCard class by <a href="mailto:serkom@schwaben.de">Kai Schmidt</a></strong>
+<br>This class shows you how to use a CardLayout layout manager. It is a port from the book
+<b>Java Programming for the Internet</b>.
+<br><a href="LayoutCard.html">The Applet</a>
+<br><a href="LayoutCard.Nrx">The Code</a>
+
+<p><li><strong>The ThreadLister class ported from 'Java in a Nutshell (Section 9)'.</strong>
+<br>This class shows you how to list information about threads and thread groups. It is used by
+the <a href="section9/AppletThreadLister.Nrx">AppletThreadLister</a> class below.
+<br><a href="section9/ThreadLister.Nrx">The Code</a>
+
+<p><li><strong>The Server class ported from 'Java in a Nutshell (Section 9)'.</strong>
+<br>This class uses sockets to provide a simple service to clients attached to a network.It is used by the
+<a href="section9/Client.Nrx">Client</a> class mentioned below. The service this server provides is
+reversing the string sent to it.
+<br>This class is an enhancement of the Server class from Java in a Nutshell Section 7.
+<br>Run using java Server, and then start the client.
+<br><a href="section9/Server.Nrx">The Code</a>
+
+<p><li><strong>The Client class ported from 'Java in a Nutshell (Section 9)'.</strong>
+<br>This is a class that is a client to the <a href="Server.Nrx">Server</a> class. It shows how to use sockets in a text mode NetRexx program.
+<br>Remember that the Server class must be started before running this Client.
+<br>Run using java Client <yourHostName>
+<br>This class is an enhancement of the Client class from Java in a Nutshell Section 7.
+<br><a href="section9/Client.Nrx">The Code</a>
+
+<p><li><strong>The AppletThreadLister class ported from 'Java in a Nutshell (Section 9)'.</strong>
+<br>This class shows how to get information about threads and thread groups.
+<br><a href="section9/AppletThreadLister.html">The Applet</a>
+<br><a href="section9/AppletThreadLister.Nrx">The Code</a>
+
+<p><li><strong>The GrayButton class ported from 'Java in a Nutshell (Section 8)'.</strong>
+<br>This class shows how to filter an image to provide graphical effects.
+<br><a href="GrayButton.html">The Applet</a>
+<br><a href="GrayButton.Nrx">The Code</a>
+
+<p><li><strong>The Animator2 class ported from 'Java in a Nutshell (Section 8)'.</strong>
+<br>This class shows how to use threads and the MediaTracker class to allow the loading of multiple images
+over a network and track their progress, and possible failure.
+<br><a href="Animator2.html">The Applet</a>
+<br><a href="Animator2.Nrx">The Code</a>
+
+<p><li><strong>The Smooth class ported from 'Java in a Nutshell (Section 8)'.</strong>
+<br>This class shows how to use threads and 'clipping rectangles' to achieve smooth animation.
+<br><a href="Smooth.html">The Applet</a>
+<br><a href="Smooth.Nrx">The Code</a>
+
+<p><li><strong>The UDPSend class ported from 'Java in a Nutshell (Section 7)'.</strong>
+<br>This class uses datagrams to send a packet to another machine on the network.It is the partner of
+the <a href="UDPReceive.Nrx">UDPReceive</a> class
+mentioned below.
+<br>Run using java UDPSend hostname message, after starting UDPReceive.
+<br><a href="UDPSend.Nrx">The Code</a>
+
+<p><li><strong>The UDPReceive class ported from 'Java in a Nutshell (Section 7)'.</strong>
+<br>This class uses datagrams to receive a packet from another machine on the network.It is the partner of
+the <a href="UDPSend.Nrx">UDPSend</a> class
+mentioned below.
+<br>Run using java UDPReceive, and then start UDPSend.
+<br><a href="UDPReceive.Nrx">The Code</a>
+
+<p><li><strong>The Server class ported from 'Java in a Nutshell (Section 7)'.</strong>
+<br>This class uses sockets to provide a simple service to clients attached to a network.It is used by the <a href="Client.Nrx">Client</a> class
+mentioned below. The service this server provides is reversing the string sent to it. It is also used by the <a href="AppletClient.Nrx">AppletClient</a>
+class.
+<br>Run using java Server, and then start one of the clients.
+<br><a href="Server.Nrx">The Code</a>
+
+<p><li><strong>The GetURLInfo class ported from 'Java in a Nutshell (Section 7)'.</strong>
+<br>This is a class that shows how to query information about URLs using NetRexx.
+<br>Run using java GetURLInfo http://www.multitask.com.au/netrexx/fac/FirstApplet.Nrx
+<br><a href="GetURLInfo.Nrx">The Code</a>
+
+<p><li><strong>The FetchTest class ported from 'Java in a Nutshell (Section 7)'.</strong>
+<br>This is a class that shows how to use the <a href="Fetch.Nrx">Fetch</a> class.
+<br>Run using javapm FetchTest http://www.multitask.com.au/netrexx/fac/FirstApplet.Nrx
+<br><a href="FetchTest.Nrx">The Code</a>
+
+<p><li><strong>The FetchImageTest class ported from 'Java in a Nutshell (Section 7)'.</strong>
+<br>This is a class that shows how to use the <a href="Fetch.Nrx">Fetch</a> class.
+<br>Run using javapm FetchImageTest http://www.multitask.com.au/multitsk.gif
+<br><a href="FetchImageTest.Nrx">The Code</a>
+
+<p><li><strong>The Fetch class ported from 'Java in a Nutshell (Section 7)'.</strong>
+<br>This is a class that shows how to use the URL class' getContent method.
+<br>Don't run this class - it's a helper class only.
+<br><a href="Fetch.Nrx">The Code</a>
+
+<p><li><strong>The Client class ported from 'Java in a Nutshell (Section 7)'.</strong>
+<br>This is a class that is a client to the <a href="Server.Nrx">Server</a> class. It shows how to use sockets in a text mode java program.
+<br>Remember that the Server class must be started before running this Client.
+<br>Run using java Client <yourHostName>
+<br><a href="Client.Nrx">The Code</a>
+
+<p><li><strong>The AppletClient class ported from 'Java in a Nutshell (Section 7)'.</strong>
+<br>This is a class that is a client to the <a href="Server.Nrx">Server</a> class. It shows how to use sockets in an applet.
+<br>Run locally using the applet viewer.
+<br><a href="AppletClient.Nrx">The Code</a>
+
+<p><li><strong>The GrepInputStream class ported from 'Java in a Nutshell (Section 6)'.</strong>
+<br>This is a class that shows how to write a class to filter text from a stream.
+<br>This class is used by <a href="Grep.Nrx">Grep</a>.
+<br><a href="GrepInputStream.Nrx">The Code</a>
+
+<p><li><strong>The Grep class ported from 'Java in a Nutshell (Section 6)'.</strong>
+<br>This is a class that shows how to use a filter class to select text from a stream.
+<br>Run using java Grep substring filename
+<br><a href="Grep.Nrx">The Code</a>
+
+<p><li><strong>The FileViewer class ported from 'Java in a Nutshell (Section 6)'.</strong>
+<br>This is a class that shows how to load a file into a text area. This class is also used by
+<a href="FileLister.Nrx>FileLister</a>. Use the two together to get a simple file manager.
+<br>Run using javapm FileViewer filename
+<br><a href="FileViewer.Nrx">The Code</a>
+
+<p><li><strong>The FileLister class ported from 'Java in a Nutshell (Section 6)'.</strong>
+<br>This is a class that shows java's input output capabilities, in a graphical application.
+<br>Run using javapm FileLister
+<br><a href="FileLister.Nrx">The Code</a>
+
+<p><li><strong>The FileCopy class ported from 'Java in a Nutshell (Section 6)'.</strong>
+<br>This is a class that shows java's input output capabilities, and some of the methods you can
+use to access and control files.
+<br>Run using java FileCopy file1 file2
+<br><a href="FileCopy.Nrx">The Code</a>
+
+<p><li><strong>The YesNoDialog class ported from 'Java in a Nutshell (Section 5)'.</strong>
+<br>This is a custom dialog class for use in applets and AWT applications. It is used in the
+<strong>AllEvents</strong> class.
+<br><a href="YesNoDialog.Nrx">The Code</a>
+
+<p><li><strong>The ScrollableScribble class ported from 'Java in a Nutshell (Section 5)'.</strong>
+<br>This is a custom control class for use in applets and AWT applications. It is used in the
+<strong>AllEvents</strong> and <strong>AllComponents</strong> classes.
+<br><a href="ScrollableScribble.Nrx">The Code</a>
+
+<p><li><strong>The ReallyQuitDialog class ported from 'Java in a Nutshell (Section 5)'.</strong>
+<br>This is a custom dialog class for use in applets and AWT applications.
+<br><a href="ReallyQuitDialog.Nrx">The Code</a>
+
+<p><li><strong>The MultiLineLabel class ported from 'Java in a Nutshell (Section 5)'.</strong>
+<br>This is a custom component class for use in applets and AWT applications.
+<br><a href="MultiLineLabel.Nrx">The Code</a>
+
+<p><li><strong>The InfoDialog class ported from 'Java in a Nutshell (Section 5)'.</strong>
+<br>Run this class using javapm. <strong>It will not close</strong> under the OS/2 JDK 1.0.1.
+<br><a href="InfoDialog.Nrx">The Code</a>
+
+<p><li><strong>The AllEvents class ported from 'Java in a Nutshell (Section 5)'.</strong>
+<br>Run this class using javapm.
+<br><a href="AllEvents.Nrx">The Code</a>
+
+<p><li><strong>The AllComponents class ported from 'Java in a Nutshell (Section 5)'.</strong>
+<br>Run this class using javapm. <strong>It will not close</strong> under the OS/2 JDK 1.0.1.
+<br><a href="AllComponents.Nrx">The Code</a>
+
+<p><li><strong>The StandaloneScribble class ported from 'Java in a Nutshell (Section 4)'.</strong>
+<br>Run this class using javapm.
+<br><a href="StandaloneScribble.Nrx">The Code</a>
+
+<p><li><strong>The SecondApplet class ported from 'Java in a Nutshell (Section 4)'.</strong>
+<br><a href="SecondApplet.html">The Applet</a>
+<br><a href="SecondApplet.Nrx">The Code</a>
+
+<p><li><strong>The ImageMap class ported from 'Java in a Nutshell (Section 4)'.</strong>
+<br><a href="Imagemap.html">The Applet</a>
+<br><a href="Imagemap.Nrx">The Code</a>
+
+<p><li><strong>The FirstApplet class ported from 'Java in a Nutshell (Section 4)'.</strong>
+<br><a href="FirstApplet.html">The Applet</a>
+<br><a href="FirstApplet.Nrx">The Code</a>
+
+<p><li><strong>The EventTester class ported from 'Java in a Nutshell (Section 4)'.</strong>
+<br><a href="EventTester.html">The Applet</a>
+<br><a href="EventTester.Nrx">The Code</a>
+
+<p><li><strong>The ColorScribble class ported from 'Java in a Nutshell (Section 4)'.</strong>
+<br><a href="ColorScribble.html">The Applet</a>
+<br><a href="ColorScribble.Nrx">The Code</a>
+
+<p><li><strong>The ClearableScribble class ported from 'Java in a Nutshell (Section 4)'.</strong>
+<br><a href="ClearableScribble.html">The Applet</a>
+<br><a href="ClearableScribble.Nrx">The Code</a>
+
+<p><li><strong>The AudioAnimator class ported from 'Java in a Nutshell (Section 4)'.</strong>
+<br><a href="AudioAnimator.html">The Applet</a>
+<br><a href="AudioAnimator.Nrx">The Code</a>
+
+<p><li><strong>The Animator class ported from 'Java in a Nutshell (Section 4)'.</strong>
+<br><a href="Animator.html">The Applet</a>
+<br><a href="Animator.Nrx">The Code</a>
+
+<p><li><strong>The Scribble applet ported from 'Java in a Nutshell (Section 4)'.</strong>
+<br><a href="Scribble.html">The Applet</a>
+<br><a href="ScribbleN.Nrx">The Code</a>
+
+<p><li><strong>The throwtest class ported from 'Java in a Nutshell (Section 4)'.</strong>
+<br>Run using java.
+<br><a href="throwtestN.Nrx">The Code</a>
+
+<p><li><strong>A class I use to synchronise my laptop and network config.sys files.</strong>
+<br>Run using java mtc.config.Synch
+<br><a href="Synch.Nrx">The Code</a>
+
+<p><li><strong>A class I use to run native commands, which places output in a stem.</strong>
+<br><a href="RunCmd.Nrx">The Code</a>
+
+
+</ol>
+<br>
+<font size=8><img src="http://www.multitask.com.au/lineeyes.gif" align=middle alt="----------------------------------------------"></font>
+<br>
+<font size=6><A HREF="http://www.multitask.com.au/index.html">H<Font size=5>ome</font></A>|</font>
+<font size=6><a href="http://www.multitask.com.au/software.htm">S<font size=5>oftware</font></a>|</font>
+<font size=6><a href="http://www.multitask.com.au/news.htm">N<font size=5>ews</font></a>|</font>
+<font size=6><a href="http://www.multitask.com.au/consulti.htm">S<font size=5>ervices</font></a>|</font>
+<font size=6><a href="http://www.multitask.com.au/links.htm">L<font size=5>inks</font></a>|</font>
+<font size=6><a href="http://www.multitask.com.au/resell.htm">R<font size=5>esellers</font></a>|</font>
+<font size=6><a href="http://www.multitask.com.au/feedback.htm">F<font size=5>eedback</font></a>|</font>
+<font size=6><a href="http://www.multitask.com.au/order.htm">O<font size=5>rders</font></a></font>
+<br>
+<font size=8><img src="http://www.multitask.com.au/lineeyes.gif" align=middle alt="----------------------------------------------"></font>
+</body>
+</html>
+

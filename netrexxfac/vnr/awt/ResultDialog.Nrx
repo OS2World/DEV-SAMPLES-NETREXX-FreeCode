@@ -1,0 +1,7 @@
+OPTIONS BINARY NOCROSSREF NOTRACE
+PACKAGE vnr.awt
+-- An interface for dialogs that return a result to their caller
+class ResultDialog public interface
+
+-- this method is what the result dialog calls to tell the parent that everything is done
+method deliverResult(o=Object)

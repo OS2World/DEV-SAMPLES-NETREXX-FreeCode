@@ -1,0 +1,9 @@
+-- This interface defines the methods that the source of data for a pipe
+-- must define.  These methods are used to allow the source to easily be
+-- connected to a sink.  
+-- Note that a PipeSource is Runnable--it is a thread body.
+class PipeSource interface implements Runnable
+    method getPipedOutputStream() returns PipedOutputStream
+    method connectOutputTo(sink=PipeSink) Signals IOException
+    method getSink() returns PipeSink
+    method start
